@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import BlueprintCanvas from './components/BlueprintCanvas';
 import Hero from './sections/Hero';
 import About from './sections/About';
 import Skills from './sections/Skills';
@@ -11,13 +12,17 @@ import Contact from './sections/Contact';
 
 function App() {
   return (
-    <div className="min-h-screen flex flex-col relative w-full bg-slate-50 overflow-hidden font-sans">
-      {/* Subtle, professional background grid/gradient instead of dark glow */}
-      <div className="fixed inset-0 z-[-1] bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-40"></div>
-      
+    <div style={{ minHeight: '100vh', background: '#000', color: '#fff', position: 'relative' }}>
+      {/* Blueprint grid background */}
+      <div className="blueprint-bg" />
+
+      {/* Animated geometric canvas (Alche Studio A mark) */}
+      <BlueprintCanvas />
+
+      {/* Content */}
       <Header />
-      
-      <main className="flex-grow flex flex-col w-full z-10 pt-20">
+
+      <main style={{ position: 'relative', zIndex: 1 }}>
         <Hero />
         <About />
         <Skills />

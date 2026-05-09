@@ -1,109 +1,177 @@
 import React from 'react';
 import Section from '../components/Section';
 import { motion } from 'framer-motion';
-import { ExternalLink, Github, Sparkles, Server } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 
 const projects = [
   {
-    title: "AI Stock Analyzer",
-    date: "January 2026",
-    description: "Developed a context-aware AI Stock Analyzer that ingests stock-related data, performs intelligent analysis using LLM reasoning and tools, and generates actionable market insights through an automated, scalable AI infrastructure.",
-    tags: ["LLM", "AI Infrastructure", "Python", "Data Analysis"],
-    icon: <Sparkles className="w-10 h-10 text-purple-400" />,
-    liveUrl: "https://ai-stock-project.netlify.app/login", // Replace with live URL
-    repoUrl: "https://github.com/praveen1817/ai-stock-analyser" // Replace with GitHub repository URL
+    index: '01',
+    title: 'AI Stock Analyzer',
+    year: '2026',
+    category: 'AI / Infrastructure',
+    desc: 'Context-aware AI Stock Analyzer that ingests stock-related data, performs intelligent analysis using LLM reasoning and tools, generating actionable market insights through an automated, scalable AI infrastructure.',
+    tags: ['LLM', 'AI Infrastructure', 'Python', 'Data Analysis'],
+    live: 'https://ai-stock-project.netlify.app/login',
+    repo: 'https://github.com/praveen1817/ai-stock-analyser',
   },
   {
-    title: "Full Stack Food Application",
-    date: "September - November 2025",
-    description: "Designed and developed a full Stack Food Delivery Application Demo model. This is a personal achievement for myself where I gained proficiency in backend and API Design.",
-    tags: ["React", "Node.js", "Express", "MongoDB", "REST API"],
-    icon: <Server className="w-10 h-10 text-blue-400" />,
-    liveUrl: "#", // Replace with live URL
-    repoUrl: "https://github.com/praveen1817/food-delivery-application" // Replace with GitHub repository URL
+    index: '02',
+    title: 'Full Stack Food Application',
+    year: '2025',
+    category: 'Full Stack / Backend',
+    desc: 'A complete Full Stack Food Delivery Application built for learning and mastery. Demonstrates full proficiency in backend design, API architecture, and production-grade deployment patterns.',
+    tags: ['React', 'Node.js', 'Express', 'MongoDB', 'REST API'],
+    live: '#',
+    repo: 'https://github.com/praveen1817/food-delivery-application',
   },
   {
-    title: "Authentication System with Protected Routes",
-    date: "January 2026",
-    description: "A Backend Project with Node js and express js along with sql database to provide a safter authenticating roote for the user reggistration and login form . For protected routes ensured using of JWT , Bcrypt for password hasingnsights through an automated, scalable AI infrastructure.",
-    tags: ["Node JS", "Javascript", "Express", "API Design"],
-    icon: <Sparkles className="w-10 h-10 text-purple-400" />,
-    liveUrl: "#", // Replace with live URL
-    repoUrl: "https://github.com/praveen1817/User-Registeration-Authentication" // Replace with GitHub repository URL
-  }
+    index: '03',
+    title: 'Authentication System',
+    year: '2026',
+    category: 'Security / Backend',
+    desc: 'Backend authentication system with Node.js and Express using SQL database. Features protected routes secured via JWT tokens and Bcrypt password hashing for enterprise-grade security.',
+    tags: ['Node.js', 'JWT', 'Bcrypt', 'SQL', 'Express'],
+    live: '#',
+    repo: 'https://github.com/praveen1817/User-Registeration-Authentication',
+  },
 ];
 
 const Projects = () => {
   return (
-    <Section 
-      id="projects" 
-      title="Featured Projects" 
-      subtitle="Selected works demonstrating my technical abilities"
+    <Section
+      id="projects"
+      label="04 — Projects"
+      title="Selected works"
+      subtitle="A curated selection of projects demonstrating technical depth and real-world impact."
     >
-      <div className="grid md:grid-cols-2 gap-8 mt-12">
-        {projects.map((project, index) => (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+        {projects.map((project, i) => (
           <motion.div
-            key={project.title}
-            initial={{ opacity: 0, y: 30 }}
+            key={project.index}
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.5, delay: index * 0.2 }}
-            className="group bg-white rounded-3xl border border-slate-200 overflow-hidden transition-all hover:shadow-lg hover:border-slate-300 active:scale-[0.98] active:shadow-sm"
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.7, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="alche-card"
+            style={{ padding: '48px', cursor: 'pointer' }}
+            onClick={() => project.live !== '#' && window.open(project.live, '_blank')}
           >
-            <div className="h-full p-8 flex flex-col relative overflow-hidden">
-              
-              {/* Minimal decorative background element */}
-              <div className="absolute top-0 right-0 w-64 h-64 bg-slate-50 rounded-full blur-3xl -z-10 group-hover:bg-slate-100 transition-colors"></div>
+            <div className="proj-grid" style={{
+              display: 'grid',
+              gridTemplateColumns: '80px 1fr auto',
+              gap: '48px',
+              alignItems: 'flex-start',
+            }}>
 
-              <div className="flex justify-between items-start mb-6 align-top relative z-10">
-                <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 group-hover:border-slate-200 transition-colors">
-                  {project.icon}
-                </div>
-                
-                <div className="flex gap-3">
-                  {project.repoUrl && (
-                    <a href={project.repoUrl} target="_blank" rel="noreferrer" aria-label="Github Repository" className="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-slate-500 hover:text-slate-900 hover:bg-slate-200 active:scale-90 active:bg-slate-300 transition-all border border-slate-200" onClick={(e) => e.stopPropagation()}>
-                      <Github size={18} />
-                    </a>
-                  )}
-                  {project.liveUrl && (
-                    <a href={project.liveUrl} target="_blank" rel="noreferrer" aria-label="Live Project URL" className="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-slate-500 hover:text-slate-900 hover:bg-slate-200 active:scale-90 active:bg-slate-300 transition-all border border-slate-200" onClick={(e) => e.stopPropagation()}>
-                      <ExternalLink size={18} />
-                    </a>
-                  )}
+              {/* Index */}
+              <div>
+                <span className="index-num">{project.index}</span>
+                <div style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '10px',
+                  color: 'rgba(255,255,255,0.2)',
+                  marginTop: '8px',
+                  letterSpacing: '0.08em',
+                }}>
+                  {project.year}
                 </div>
               </div>
 
-              {/* Clickable Card Body */}
-              <a href={project.liveUrl} target="_blank" rel="noreferrer" className="flex-grow flex flex-col relative z-0">
+              {/* Content */}
+              <div>
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '16px',
+                  marginBottom: '16px',
+                }}>
+                  <h3 style={{
+                    fontSize: '22px',
+                    fontWeight: 400,
+                    color: 'rgba(255,255,255,0.9)',
+                    letterSpacing: '-0.02em',
+                  }}>
+                    {project.title}
+                  </h3>
+                  <span className="alche-tag">{project.category}</span>
+                </div>
 
-              <div className="flex items-center gap-2 text-slate-500 text-xs uppercase tracking-wider font-semibold mb-3">
-                <span>{project.date}</span>
+                <p style={{
+                  fontSize: '14px',
+                  lineHeight: 1.8,
+                  color: 'rgba(255,255,255,0.4)',
+                  fontWeight: 300,
+                  maxWidth: '600px',
+                  marginBottom: '28px',
+                }}>
+                  {project.desc}
+                </p>
+
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                  {project.tags.map(tag => (
+                    <span key={tag} className="skill-pill">{tag}</span>
+                  ))}
+                </div>
               </div>
 
-              <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors">
-                {project.title}
-              </h3>
-              
-              <p className="text-slate-600 leading-relaxed mb-8 flex-grow text-sm">
-                {project.description}
-              </p>
-
-              <div className="flex flex-wrap gap-2 mt-auto pt-6 border-t border-slate-100">
-                {project.tags.map(tag => (
-                  <span 
-                    key={tag} 
-                    className="px-3 py-1 rounded-full text-xs font-medium bg-slate-50 text-slate-600 border border-slate-200 group-hover:border-slate-300"
+              {/* Links */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', alignItems: 'flex-end', paddingTop: '4px' }}>
+                <a
+                  href={project.repo}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={e => e.stopPropagation()}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '10px',
+                    letterSpacing: '0.12em',
+                    color: 'rgba(255,255,255,0.3)',
+                    textTransform: 'uppercase',
+                    transition: 'color 0.2s',
+                  }}
+                  onMouseEnter={e => e.currentTarget.style.color = 'rgba(255,255,255,0.8)'}
+                  onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.3)'}
+                >
+                  GitHub <ArrowUpRight size={12} />
+                </a>
+                {project.live !== '#' && (
+                  <a
+                    href={project.live}
+                    target="_blank"
+                    rel="noreferrer"
+                    onClick={e => e.stopPropagation()}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: '10px',
+                      letterSpacing: '0.12em',
+                      color: 'rgba(255,255,255,0.3)',
+                      textTransform: 'uppercase',
+                      transition: 'color 0.2s',
+                    }}
+                    onMouseEnter={e => e.currentTarget.style.color = 'rgba(255,255,255,0.8)'}
+                    onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.3)'}
                   >
-                    {tag}
-                  </span>
-                ))}
+                    Live <ArrowUpRight size={12} />
+                  </a>
+                )}
               </div>
-              </a>
             </div>
           </motion.div>
         ))}
       </div>
+
+      <style>{`
+        @media (max-width: 900px) {
+          .proj-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
+          .proj-grid > div:last-child { align-items: flex-start !important; flex-direction: row !important; }
+        }
+      `}</style>
     </Section>
   );
 };

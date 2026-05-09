@@ -1,94 +1,341 @@
 @import "tailwindcss";
 
-@theme {
-  --color-primary-50: #f8fafc;
-  --color-primary-100: #f1f5f9;
-  --color-primary-400: #94a3b8;
-  --color-primary-500: #64748b;
-  --color-primary-600: #475569;
-  --color-primary-900: #0f172a;
-  --color-accent: #B22222;
-  --color-accent-hover: #8b1a1a;
-  
-  --color-background: #ffffff;
-  --color-surface: #f8fafc; /* Very light slate for surfaces */
-  --color-text-primary: #0f172a; /* Slate 900 */
-  --color-text-secondary: #475569; /* Slate 600 */
-  
-  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
-  --font-heading: 'Outfit', ui-sans-serif, system-ui, sans-serif;
+/* ═══════════════════════════════════════════════════════════════
+   ALCHE STUDIO INSPIRED — Blueprint Dark Aesthetic
+   Pure black, white hairlines, geometric precision
+═══════════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+
+:root {
+  --black: #000000;
+  --black-soft: #0a0a0a;
+  --black-mid: #111111;
+  --black-card: #0d0d0d;
+  --white: #ffffff;
+  --white-dim: rgba(255, 255, 255, 0.85);
+  --white-muted: rgba(255, 255, 255, 0.5);
+  --white-faint: rgba(255, 255, 255, 0.15);
+  --white-ghost: rgba(255, 255, 255, 0.06);
+  --line: rgba(255, 255, 255, 0.08);
+  --line-bright: rgba(255, 255, 255, 0.18);
+  --blue-glow: rgba(60, 120, 255, 0.5);
+  --blue-subtle: rgba(60, 120, 255, 0.12);
+  --blue-accent: #3c78ff;
+  --font-sans: 'Space Grotesk', system-ui, sans-serif;
+  --font-mono: 'Space Mono', monospace;
 }
 
-/* Custom base styles for premium feel */
+/* ── Reset & Base ───────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; font-size: 17px; }
+
 body {
-  background-color: var(--color-background);
-  color: var(--color-text-primary);
+  background-color: var(--black);
+  color: var(--white);
   font-family: var(--font-sans);
-  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
+/* ── Scrollbar ──────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--black); }
+::-webkit-scrollbar-thumb { background: var(--white-faint); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: var(--white-muted); }
+
+/* ── Typography Defaults ────────────────────────────────────── */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  color: var(--white);
+  letter-spacing: -0.02em;
 }
 
-/* Scrollbar styles */
-::-webkit-scrollbar {
-  width: 8px;
+a { color: inherit; text-decoration: none; }
+
+/* ── Blueprint Grid Background ──────────────────────────────── */
+.blueprint-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 80px 80px;
 }
 
-::-webkit-scrollbar-track {
-  background: var(--color-background);
+/* ── Blueprint Canvas Animation ─────────────────────────────── */
+.blueprint-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
 }
 
-::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 4px;
+/* ── Hairline Border Utility ────────────────────────────────── */
+.hairline { border-color: var(--line); }
+.hairline-bright { border-color: var(--line-bright); }
+
+/* ── Section Base ────────────────────────────────────────────── */
+.alche-section {
+  position: relative;
+  z-index: 1;
+  padding: 120px 0;
+  border-top: 1px solid var(--line);
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-accent);
+/* ── Section Label (small uppercase tracker) ─────────────────── */
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--white-muted);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+.section-label::before {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--white-faint);
 }
 
-/* Minimalist Utilities */
-.glass {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-/* Accent utility classes */
-.accent-bg {background-color: var(--color-accent) !important;}
-.accent-text {color: var(--color-accent) !important;}
+/* ── Card ──────────────────────────────────────────────────── */
+.alche-card {
+  background: var(--white-ghost);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  transition: border-color 0.3s ease, background 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.alche-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--white-ghost) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.alche-card:hover { border-color: var(--line-bright); }
+.alche-card:hover::before { opacity: 1; }
+
+/* ── Corner Markers ──────────────────────────────────────────── */
+.corner-mark {
+  position: relative;
+}
+.corner-mark::before, .corner-mark::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-color: rgba(255,255,255,0.25);
+  border-style: solid;
+}
+.corner-mark::before {
+  top: 0; left: 0;
+  border-width: 1px 0 0 1px;
+}
+.corner-mark::after {
+  bottom: 0; right: 0;
+  border-width: 0 1px 1px 0;
 }
 
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
+/* ── Button Primary ──────────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 32px;
+  border: 1px solid var(--line-bright);
+  background: transparent;
+  color: var(--white);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--white);
+  transform: translateX(-101%);
+  transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+}
+.btn-primary:hover { color: var(--black); border-color: var(--white); }
+.btn-primary:hover::before { transform: translateX(0); }
+.btn-primary span { position: relative; z-index: 1; }
+
+/* ── Button Ghost ─────────────────────────────────────────────── */
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 32px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--white-muted);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.btn-ghost:hover { border-color: var(--line-bright); color: var(--white); }
+
+/* ── Tag / Badge ─────────────────────────────────────────────── */
+.alche-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  border: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--white-muted);
+  background: var(--white-ghost);
+}
+.alche-tag:hover { border-color: var(--line-bright); color: var(--white); }
+
+/* ── Skill Pill ─────────────────────────────────────────────── */
+.skill-pill {
+  padding: 7px 16px;
+  border: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--white-muted);
+  background: transparent;
+  transition: all 0.25s ease;
+  cursor: default;
+}
+.skill-pill:hover {
+  border-color: var(--white-faint);
+  color: var(--white);
+  background: var(--white-ghost);
 }
 
-/* Elegant Text */
-.text-gradient {
-  background: linear-gradient(to right, #0f172a, #334155);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+/* ── Form Elements ───────────────────────────────────────────── */
+.alche-input {
+  width: 100%;
+  padding: 16px 20px;
+  background: var(--white-ghost);
+  border: 1px solid var(--line);
+  color: var(--white);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.3s;
+  border-radius: 0;
+}
+.alche-input::placeholder { color: var(--white-faint); }
+.alche-input:focus { border-color: var(--line-bright); }
+
+/* ── Nav Link ──────────────────────────────────────────────── */
+.nav-link {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--white-muted);
+  transition: color 0.25s;
+  position: relative;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--white);
+  transition: width 0.3s ease;
+}
+.nav-link:hover { color: var(--white); }
+.nav-link:hover::after { width: 100%; }
+
+/* ── Geometric Decorations ───────────────────────────────────── */
+.geo-circle {
+  border-radius: 50%;
+  border: 1px solid var(--line);
+}
+.geo-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--white-faint);
 }
 
-/* Accent color overrides */
-a {
-  color: var(--color-accent);
-}
-a:hover {
-  color: var(--color-accent-hover);
-}
-
-button, .bg-slate-900 {
-  background-color: var(--color-accent) !important;
-  color: white !important;
+/* ── Number Index ─────────────────────────────────────────────── */
+.index-num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--white-faint);
+  letter-spacing: 0.1em;
 }
 
-button:hover, .bg-slate-900:hover {
-  background-color: var(--color-accent-hover) !important;
+/* ── Glow Effect ─────────────────────────────────────────────── */
+.blue-glow {
+  box-shadow: 0 0 0 1px var(--blue-accent), 0 0 40px var(--blue-subtle);
 }
 
+/* ── Horizontal divider ───────────────────────────────────────── */
+.alche-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--line);
+}
+
+/* ── Logo mark ────────────────────────────────────────────────── */
+.logo-mark {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  color: var(--white);
+}
+
+/* ── Animated underline for section titles ───────────────────── */
+.alche-title {
+  font-size: clamp(52px, 9vw, 120px);
+  font-weight: 300;
+  letter-spacing: -0.04em;
+  line-height: 0.93;
+  color: var(--white);
+}
+
+.alche-title-sm {
+  font-size: clamp(36px, 5.5vw, 72px);
+  font-weight: 300;
+  letter-spacing: -0.025em;
+  line-height: 1;
+  color: var(--white);
+}
+
+/* ── Hover scale fix ─────────────────────────────────────────── */
+.hover-lift {
+  transition: transform 0.25s ease;
+}
+.hover-lift:hover { transform: translateY(-2px); }
+
+/* ── Mobile menu ─────────────────────────────────────────────── */
+.mobile-nav {
+  background: rgba(0,0,0,0.97);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--line);
+}

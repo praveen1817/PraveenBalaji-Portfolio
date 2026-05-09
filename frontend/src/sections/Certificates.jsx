@@ -1,91 +1,172 @@
 import React from 'react';
 import Section from '../components/Section';
 import { motion } from 'framer-motion';
-import { Award, GraduationCap, CheckCircle } from 'lucide-react';
 
 const certificates = [
-  { name: "Business Intelligence & Analytics", issuer: "NPTEL", icon: <Award className="w-5 h-5 text-blue-500" /> },
-  { name: "Azure Fundamentals", issuer: "Microsoft", icon: <CheckCircle className="w-5 h-5 text-sky-500" /> },
-  { name: "Java programming", issuer: "PrepInsta", icon: <CheckCircle className="w-5 h-5 text-orange-500" /> },
-  { name: "React JS", issuer: "Udemy", icon: <CheckCircle className="w-5 h-5 text-purple-500" /> },
-  { name: "Enterprises design thinking practitioner", issuer: "IBM", icon: <Award className="w-5 h-5 text-blue-600" /> },
-  { name: "Produce Management", issuer: "MBA", icon: <CheckCircle className="w-5 h-5 text-emerald-500" /> },
-  { name: "Java", issuer: "GreatLearning", icon: <CheckCircle className="w-5 h-5 text-orange-500" /> }
+  { name: 'Business Intelligence & Analytics', issuer: 'NPTEL' },
+  { name: 'Azure Fundamentals', issuer: 'Microsoft' },
+  { name: 'Java Programming', issuer: 'PrepInsta' },
+  { name: 'React JS', issuer: 'Udemy' },
+  { name: 'Enterprise Design Thinking', issuer: 'IBM' },
+  { name: 'Product Management', issuer: 'MBA' },
+  { name: 'Java', issuer: 'GreatLearning' },
 ];
 
 const Certificates = () => {
   return (
-    <Section 
-      id="certificates" 
-      title="Certifications & Education" 
-      subtitle="Academic background and continuous learning"
+    <Section
+      id="certificates"
+      label="05 — Education"
+      title="Credentials & learning"
+      subtitle="Academic foundation and continuous professional development."
     >
-      <div className="grid lg:grid-cols-3 gap-8 mt-12">
-        
-        {/* Education Highlight Card */}
-        <motion.div 
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
+      <div className="cert-grid" style={{
+        display: 'grid',
+        gridTemplateColumns: '1fr 1fr',
+        gap: '2px',
+      }}>
+
+        {/* Education Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="lg:col-span-1"
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="alche-card corner-mark"
+          style={{ padding: '56px 48px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}
         >
-          <div className="bg-white rounded-3xl p-8 h-full border border-slate-200 shadow-sm relative overflow-hidden group hover:border-blue-300 transition-all active:scale-[0.98] active:shadow-none cursor-pointer">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-slate-50 rounded-full blur-2xl"></div>
-            
-            <div className="w-14 h-14 rounded-2xl bg-blue-50 flex items-center justify-center mb-6 shadow-sm border border-blue-100 group-hover:bg-blue-600 transition-colors">
-              <GraduationCap className="text-blue-600 group-hover:text-white w-8 h-8 transition-colors" />
+          <div>
+            <span className="index-num" style={{ display: 'block', marginBottom: '32px' }}>01</span>
+
+            <div style={{
+              fontFamily: 'var(--font-mono)',
+              fontSize: '10px',
+              letterSpacing: '0.2em',
+              color: 'rgba(255,255,255,0.25)',
+              textTransform: 'uppercase',
+              marginBottom: '16px',
+            }}>
+              2022 — 2026
             </div>
-            
-            <h3 className="text-2xl font-bold text-slate-900 mb-6 font-heading border-b border-slate-100 pb-4">Formal Education</h3>
-            
-            <div className="space-y-4 relative z-10">
-              <div>
-                <span className="text-blue-600 font-medium text-sm">2022 - 2026</span>
-                <h4 className="text-xl font-bold text-slate-900 mt-1">Bachelor of Computer Science and Design</h4>
-                <p className="text-slate-500 mt-2 text-base">SNS College of Engineering</p>
-              </div>
-              
-              <div className="mt-6 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-50 border border-slate-200 text-slate-700 font-medium text-sm shadow-sm group-hover:border-blue-200 transition-colors">
-                CGPA: 8.03
-              </div>
+
+            <h3 style={{
+              fontSize: '24px',
+              fontWeight: 400,
+              color: 'rgba(255,255,255,0.9)',
+              letterSpacing: '-0.02em',
+              lineHeight: 1.3,
+              marginBottom: '12px',
+            }}>
+              Bachelor of Computer<br />Science & Design
+            </h3>
+
+            <p style={{
+              fontFamily: 'var(--font-mono)',
+              fontSize: '12px',
+              letterSpacing: '0.06em',
+              color: 'rgba(255,255,255,0.3)',
+              marginBottom: '32px',
+            }}>
+              SNS College of Engineering
+            </p>
+          </div>
+
+          <div>
+            <div className="alche-divider" style={{ marginBottom: '24px' }} />
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <span style={{
+                fontFamily: 'var(--font-mono)',
+                fontSize: '10px',
+                letterSpacing: '0.15em',
+                color: 'rgba(255,255,255,0.25)',
+                textTransform: 'uppercase',
+              }}>
+                CGPA
+              </span>
+              <span style={{
+                fontFamily: 'var(--font-mono)',
+                fontSize: '28px',
+                fontWeight: 400,
+                color: 'rgba(255,255,255,0.85)',
+                letterSpacing: '-0.03em',
+              }}>
+                8.03
+              </span>
             </div>
           </div>
         </motion.div>
 
         {/* Certificates Grid */}
-        <motion.div 
-          initial={{ opacity: 0, x: 30 }}
-          whileInView={{ opacity: 1, x: 0 }}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="lg:col-span-2 bg-white rounded-3xl p-8 border border-slate-200 shadow-sm"
+          transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          className="alche-card"
+          style={{ padding: '56px 48px' }}
         >
-          <h3 className="text-2xl font-bold text-slate-900 mb-8 font-heading border-b border-slate-100 pb-4">Professional Certificates</h3>
-          
-          <div className="grid sm:grid-cols-2 gap-4">
-            {certificates.map((cert, index) => (
-              <motion.div 
+          <span className="index-num" style={{ display: 'block', marginBottom: '32px' }}>02</span>
+
+          <h3 style={{
+            fontSize: '18px',
+            fontWeight: 400,
+            color: 'rgba(255,255,255,0.85)',
+            letterSpacing: '-0.01em',
+            marginBottom: '32px',
+          }}>
+            Professional Certificates
+          </h3>
+
+          <div className="alche-divider" style={{ marginBottom: '24px' }} />
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
+            {certificates.map((cert, i) => (
+              <motion.div
                 key={cert.name}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, x: -12 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="flex items-start gap-4 p-4 rounded-2xl bg-slate-50 hover:bg-white transition-colors border border-slate-100 hover:border-slate-300 hover:shadow-sm active:scale-[0.98] active:bg-slate-100 cursor-pointer"
+                transition={{ duration: 0.4, delay: i * 0.07 }}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  padding: '14px 0',
+                  borderBottom: '1px solid rgba(255,255,255,0.05)',
+                  cursor: 'default',
+                  transition: 'background 0.2s',
+                }}
               >
-                <div className="mt-1 bg-white p-2 rounded-lg shadow-sm border border-slate-100">
-                  {cert.icon}
-                </div>
-                <div>
-                  <h4 className="font-bold text-slate-800 text-sm">{cert.name}</h4>
-                  <p className="text-xs text-slate-500 mt-1 font-medium">{cert.issuer}</p>
-                </div>
+                <span style={{
+                  fontSize: '14px',
+                  fontWeight: 400,
+                  color: 'rgba(255,255,255,0.65)',
+                  letterSpacing: '-0.01em',
+                }}>
+                  {cert.name}
+                </span>
+                <span style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '10px',
+                  letterSpacing: '0.12em',
+                  color: 'rgba(255,255,255,0.25)',
+                  textTransform: 'uppercase',
+                  flexShrink: 0,
+                  marginLeft: '16px',
+                }}>
+                  {cert.issuer}
+                </span>
               </motion.div>
             ))}
           </div>
         </motion.div>
-
       </div>
+
+      <style>{`
+        @media (max-width: 768px) {
+          .cert-grid { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
     </Section>
   );
 };

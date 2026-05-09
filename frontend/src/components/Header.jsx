@@ -1,102 +1,141 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Github, Linkedin, Mail } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Menu, X } from 'lucide-react';
 
 const navLinks = [
-  { name: 'About', href: '#about' },
-  { name: 'Skills', href: '#skills' },
-  { name: 'Experience', href: '#experience' },
-  { name: 'Projects', href: '#projects' },
-  { name: 'Certificates', href: '#certificates' },
-  { name: 'Contact', href: '#contact' },
+  { label: 'About', href: '#about' },
+  { label: 'Skills', href: '#skills' },
+  { label: 'Experience', href: '#experience' },
+  { label: 'Projects', href: '#projects' },
+  { label: 'Certificates', href: '#certificates' },
+  { label: 'Contact', href: '#contact' },
 ];
 
 const Header = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 30);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   return (
     <header
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'glass py-3 shadow-[0_4px_30px_rgba(0,0,0,0.03)]' : 'bg-transparent py-5'}`}
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 100,
+        background: scrolled ? 'rgba(0,0,0,0.95)' : 'transparent',
+        borderBottom: scrolled ? '1px solid rgba(255,255,255,0.07)' : '1px solid transparent',
+        backdropFilter: scrolled ? 'blur(20px)' : 'none',
+        transition: 'all 0.4s ease',
+        padding: '0 48px',
+      }}
     >
-      <div className="container mx-auto px-6 max-w-6xl">
-        <div className="flex items-center justify-between">
-          <a href="#" className="text-2xl font-heading font-bold tracking-tight text-slate-900 group">
-            Praveen <span className="text-slate-500 group-hover:text-slate-700 transition-colors">Balaji S</span>
-          </a>
+      <div style={{
+        maxWidth: '1400px',
+        margin: '0 auto',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        height: '80px',
+      }}>
 
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-8">
-            {navLinks.filter(link => link.name !== 'Contact').map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors relative after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[1px] after:bg-slate-900 hover:after:w-full after:transition-all after:duration-300"
-              >
-                {link.name}
-              </a>
-            ))}
-            <a
-              href="#contact"
-              className="px-5 py-2.5 rounded-full accent-bg hover:bg-slate-800 text-white text-sm font-medium transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
-            >
-              Contact Me
+        {/* Logo — full name visible */}
+        <a href="#" style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none' }}>
+          {/* Geometric A mark */}
+          <svg width="24" height="24" viewBox="0 0 22 22" fill="none" style={{ flexShrink: 0 }}>
+            <polygon
+              points="11,2 21,20 1,20"
+              stroke="rgba(255,255,255,0.75)"
+              strokeWidth="1.2"
+              fill="none"
+            />
+            <line x1="6" y1="14" x2="16" y2="14" stroke="rgba(255,255,255,0.4)" strokeWidth="0.9" />
+            <circle cx="11" cy="11" r="9" stroke="rgba(255,255,255,0.14)" strokeWidth="0.7" />
+          </svg>
+          <span style={{
+            fontFamily: 'var(--font-mono)',
+            fontSize: '14px',
+            letterSpacing: '0.12em',
+            color: 'rgba(255,255,255,0.92)',
+            whiteSpace: 'nowrap',
+            fontWeight: 400,
+          }}>
+            PRAVEEN BALAJI S
+          </span>
+        </a>
+
+        {/* Desktop Nav */}
+        <nav style={{ display: 'flex', alignItems: 'center', gap: '40px' }} className="hidden-mobile">
+          {navLinks.map(link => (
+            <a key={link.label} href={link.href} className="nav-link">
+              {link.label}
             </a>
-          </nav>
+          ))}
+        </nav>
 
-          {/* Mobile Menu Toggle */}
-          <button
-            className="md:hidden text-slate-600 hover:text-slate-900 transition-colors"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
+        {/* CTA */}
+        <a href="#contact" className="btn-primary hidden-mobile" style={{ padding: '12px 28px' }}>
+          <span>Available for Work</span>
+          <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#4ade80', display: 'inline-block', flexShrink: 0 }} />
+        </a>
+
+        {/* Mobile toggle */}
+        <button
+          onClick={() => setMenuOpen(!menuOpen)}
+          style={{
+            background: 'none',
+            border: 'none',
+            color: 'rgba(255,255,255,0.7)',
+            cursor: 'pointer',
+            padding: '8px',
+            display: 'none',
+          }}
+          className="mobile-toggle"
+        >
+          {menuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
       </div>
 
-      {/* Mobile Nav Menu */}
+      {/* Mobile nav */}
       <AnimatePresence>
-        {mobileMenuOpen && (
+        {menuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white/95 backdrop-blur-md border-t border-slate-100 mt-3 absolute w-full shadow-lg"
+            className="mobile-nav"
+            style={{ overflow: 'hidden' }}
           >
-            <nav className="flex flex-col container mx-auto px-6 py-4 gap-2">
-              {navLinks.map((link) => (
+            <div style={{ padding: '24px 48px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
+              {navLinks.map(link => (
                 <a
-                  key={link.name}
+                  key={link.label}
                   href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block px-4 py-3 text-base font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50 active:bg-slate-100 rounded-xl transition-all"
+                  className="nav-link"
+                  onClick={() => setMenuOpen(false)}
+                  style={{ fontSize: '15px', letterSpacing: '0.1em' }}
                 >
-                  {link.name}
+                  {link.label}
                 </a>
               ))}
-              <div className="flex justify-center gap-2 pt-4 mt-2 border-t border-slate-100">
-                <a href="https://github.com/praveen1817" target="_blank" rel="noreferrer" className="p-3 text-slate-500 hover:text-slate-900 hover:bg-slate-50 active:bg-slate-100 rounded-full transition-all">
-                  <Github size={22} />
-                </a>
-                <a href="https://www.linkedin.com/in/praveenbalaji-s" target="_blank" rel="noreferrer" className="p-3 text-slate-500 hover:text-slate-900 hover:bg-slate-50 active:bg-slate-100 rounded-full transition-all">
-                  <Linkedin size={22} />
-                </a>
-                <a href="mailto:praveen42165@gmail.com" className="p-3 text-slate-500 hover:text-slate-900 hover:bg-slate-50 active:bg-slate-100 rounded-full transition-all">
-                  <Mail size={22} />
-                </a>
-              </div>
-            </nav>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
+
+      <style>{`
+        @media (max-width: 900px) {
+          .hidden-mobile { display: none !important; }
+          .mobile-toggle { display: flex !important; }
+          header { padding: 0 24px !important; }
+        }
+      `}</style>
     </header>
   );
 };
