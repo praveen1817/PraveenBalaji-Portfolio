@@ -46,7 +46,7 @@ const Header = () => {
             ))}
             <a
               href="#contact"
-              className="px-5 py-2.5 rounded-full bg-slate-900 hover:bg-slate-800 text-white text-sm font-medium transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
+              className="px-5 py-2.5 rounded-full accent-bg hover:bg-slate-800 text-white text-sm font-medium transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
             >
               Contact Me
             </a>

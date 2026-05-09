@@ -152,7 +152,7 @@ const Contact = () => {
           <button
             type="submit"
             disabled={status.submitting || status.submitted}
-            className="w-full sm:w-auto px-8 py-4 bg-slate-900 hover:bg-slate-800 text-white rounded-xl font-medium transition-all shadow-sm hover:shadow-md disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2 active:scale-95 active:bg-slate-700"
+            className="w-full sm:w-auto px-8 py-4 accent-bg hover:bg-slate-800 text-white rounded-xl font-medium transition-all shadow-sm hover:shadow-md disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2 active:scale-95 active:bg-slate-700"
           >
             {status.submitting ? (
               <>

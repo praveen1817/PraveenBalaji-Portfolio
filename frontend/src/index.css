@@ -7,6 +7,8 @@
   --color-primary-500: #64748b;
   --color-primary-600: #475569;
   --color-primary-900: #0f172a;
+  --color-accent: #B22222;
+  --color-accent-hover: #8b1a1a;
   
   --color-background: #ffffff;
   --color-surface: #f8fafc; /* Very light slate for surfaces */
@@ -46,7 +48,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #B22222;
+  background: var(--color-accent);
 }
 
 /* Minimalist Utilities */
@@ -55,6 +57,9 @@ h1, h2, h3, h4, h5, h6 {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(0, 0, 0, 0.05);
+/* Accent utility classes */
+.accent-bg {background-color: var(--color-accent) !important;}
+.accent-text {color: var(--color-accent) !important;}
 }
 
 /* Smooth scrolling */
@@ -72,18 +77,18 @@ html {
 
 /* Accent color overrides */
 a {
-  color: #B22222;
+  color: var(--color-accent);
 }
 a:hover {
-  color: #8b1a1a;
+  color: var(--color-accent-hover);
 }
 
 button, .bg-slate-900 {
-  background-color: #B22222 !important;
+  background-color: var(--color-accent) !important;
   color: white !important;
 }
 
 button:hover, .bg-slate-900:hover {
-  background-color: #8b1a1a !important;
+  background-color: var(--color-accent-hover) !important;
 }
 

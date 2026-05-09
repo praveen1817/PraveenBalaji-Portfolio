@@ -37,7 +37,7 @@ const Hero = () => {
             <div className="flex flex-col sm:flex-row items-center gap-4 justify-center md:justify-start">
               <a 
                 href="#projects"
-                className="flex items-center gap-2 bg-slate-900 hover:bg-slate-800 active:bg-slate-700 active:scale-95 text-white px-8 py-4 rounded-full font-medium transition-all shadow-md hover:shadow-xl hover:-translate-y-1 w-full sm:w-auto justify-center"
+                className="flex items-center gap-2 accent-bg hover:bg-slate-800 active:bg-slate-700 active:scale-95 text-white px-8 py-4 rounded-full font-medium transition-all shadow-md hover:shadow-xl hover:-translate-y-1 w-full sm:w-auto justify-center"
               >
                 View My Work
                 <ArrowRight size={18} />
