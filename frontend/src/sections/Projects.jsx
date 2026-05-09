@@ -53,7 +53,7 @@ const Projects = () => {
             viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.7, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="alche-card"
-            style={{ padding: '48px', cursor: 'pointer' }}
+            style={{ padding: '40px 32px', cursor: 'pointer' }}
             onClick={() => project.live !== '#' && window.open(project.live, '_blank')}
           >
             <div className="proj-grid" style={{
@@ -99,7 +99,7 @@ const Projects = () => {
                 <p style={{
                   fontSize: '14px',
                   lineHeight: 1.8,
-                  color: 'rgba(255,255,255,0.4)',
+                  color: 'rgba(255,255,255,0.6)',
                   fontWeight: 300,
                   maxWidth: '600px',
                   marginBottom: '28px',
@@ -168,8 +168,17 @@ const Projects = () => {
 
       <style>{`
         @media (max-width: 900px) {
-          .proj-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
-          .proj-grid > div:last-child { align-items: flex-start !important; flex-direction: row !important; }
+          .proj-grid {
+            grid-template-columns: 1fr !important;
+            gap: 24px !important;
+          }
+          .proj-grid > div:last-child {
+            align-items: flex-start !important;
+            flex-direction: row !important;
+          }
+          .alche-card.proj-card {
+            padding: 28px 20px !important;
+          }
         }
       `}</style>
     </Section>

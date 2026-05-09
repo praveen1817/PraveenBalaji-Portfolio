@@ -75,14 +75,14 @@ const Skills = () => {
                     fontFamily: 'var(--font-mono)',
                     fontSize: '12px',
                     letterSpacing: '0.06em',
-                    color: 'rgba(255,255,255,0.45)',
+                    color: 'rgba(255,255,255,0.65)',
                     padding: '6px 0',
                     borderBottom: '1px solid rgba(255,255,255,0.04)',
                     transition: 'color 0.2s',
                     cursor: 'default',
                   }}
-                  onMouseEnter={e => e.currentTarget.style.color = 'rgba(255,255,255,0.9)'}
-                  onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.45)'}
+                  onMouseEnter={e => e.currentTarget.style.color = 'rgba(255,255,255,0.95)'}
+                  onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.65)'}
                 >
                   <span>{skill}</span>
                   <span style={{ width: '4px', height: '4px', borderRadius: '50%', background: 'rgba(255,255,255,0.12)', flexShrink: 0 }} />
@@ -95,10 +95,12 @@ const Skills = () => {
 
       <style>{`
         @media (max-width: 900px) {
-          #skills .grid-skills { grid-template-columns: 1fr !important; }
-        }
-        @media (max-width: 900px) {
-          #skills > div > div { grid-template-columns: 1fr !important; }
+          #skills .grid-skills {
+            grid-template-columns: 1fr !important;
+          }
+          #skills .grid-skills .alche-card {
+            padding: 28px 20px !important;
+          }
         }
       `}</style>
     </Section>

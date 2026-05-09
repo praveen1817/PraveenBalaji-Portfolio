@@ -140,7 +140,7 @@ const Certificates = () => {
                 <span style={{
                   fontSize: '14px',
                   fontWeight: 400,
-                  color: 'rgba(255,255,255,0.65)',
+                  color: 'rgba(255,255,255,0.82)',
                   letterSpacing: '-0.01em',
                 }}>
                   {cert.name}
@@ -149,7 +149,7 @@ const Certificates = () => {
                   fontFamily: 'var(--font-mono)',
                   fontSize: '10px',
                   letterSpacing: '0.12em',
-                  color: 'rgba(255,255,255,0.25)',
+                  color: 'rgba(255,255,255,0.5)',
                   textTransform: 'uppercase',
                   flexShrink: 0,
                   marginLeft: '16px',
@@ -164,7 +164,12 @@ const Certificates = () => {
 
       <style>{`
         @media (max-width: 768px) {
-          .cert-grid { grid-template-columns: 1fr !important; }
+          .cert-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .cert-grid .alche-card {
+            padding: 32px 20px !important;
+          }
         }
       `}</style>
     </Section>

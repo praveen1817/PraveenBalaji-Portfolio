@@ -119,8 +119,8 @@ const Hero = () => {
         overflow: 'hidden',
       }}
     >
-      {/* Corner coordinate labels */}
-      <div style={{
+      {/* Corner coordinate labels — hidden on mobile to prevent collision */}
+      <div className="hero-corner-left" style={{
         position: 'absolute',
         top: '100px',
         left: '64px',
@@ -134,7 +134,7 @@ const Hero = () => {
         <div>LON 76.9558° E</div>
       </div>
 
-      <div style={{
+      <div className="hero-corner-right" style={{
         position: 'absolute',
         top: '100px',
         right: '64px',
@@ -204,7 +204,7 @@ const Hero = () => {
               fontFamily: 'var(--font-mono)',
               fontSize: 'clamp(14px, 1.8vw, 20px)',
               letterSpacing: '0.04em',
-              color: 'rgba(255,255,255,0.35)',
+              color: 'rgba(255,255,255,0.7)',
               marginBottom: '20px',
               display: 'flex',
               alignItems: 'center',
@@ -223,9 +223,9 @@ const Hero = () => {
             transition={{ delay: 0.85, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             style={{
               fontFamily: 'var(--font-mono)',
-              fontSize: 'clamp(12px, 1.2vw, 14px)',
+              fontSize: 'clamp(13px, 1.4vw, 15px)',
               letterSpacing: '0.05em',
-              color: 'rgba(255,255,255,0.32)',
+              color: 'rgba(255,255,255,0.55)',
               maxWidth: '480px',
               lineHeight: 1.9,
               marginBottom: '52px',
@@ -355,19 +355,59 @@ const Hero = () => {
 
       <style>{`
         @media (max-width: 900px) {
-          .hero-layout-wrapper { flex-direction: column !important; text-align: center; gap: 20px !important; }
-          .hero-content { align-items: center !important; text-align: center; }
+          /* Hide corner labels to prevent collision with status badge */
+          .hero-corner-left,
+          .hero-corner-right { display: none !important; }
+
+          /* Stack layout vertically — orbital on top, text below */
+          .hero-layout-wrapper {
+            flex-direction: column-reverse !important;
+            text-align: center;
+            gap: 0 !important;
+          }
+          .hero-content {
+            align-items: center !important;
+            text-align: center;
+            padding-top: 8px;
+            position: relative;
+            z-index: 2;
+          }
           .hero-content p { margin-left: auto; margin-right: auto; }
           .cta-buttons { justify-content: center !important; }
           .social-links { justify-content: center !important; }
-          .orbital-wrapper { width: 100%; height: 320px; display: flex; align-items: center; justify-content: center; overflow: visible; margin-top: -20px; }
-          .orbital-scaler { transform: scale(0.7); transform-origin: center; display: flex; align-items: center; justify-content: center; }
-          #hero { padding: 120px 24px 80px !important; }
-          #hero h1 { font-size: clamp(48px, 12vw, 80px) !important; }
+
+          /* Orbital — large, prominent, centered, clipped at bottom so badges don't bleed into text */
+          .orbital-wrapper {
+            width: 100%;
+            height: 360px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin-bottom: 24px;
+            position: relative;
+            z-index: 1;
+          }
+          .orbital-scaler {
+            transform: scale(0.85);
+            transform-origin: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+
+          #hero { padding: 110px 20px 80px !important; }
+          #hero h1 { font-size: clamp(50px, 13vw, 80px) !important; }
         }
-        @media (max-width: 500px) {
-          .orbital-wrapper { height: 240px; margin-top: -30px; }
-          .orbital-scaler { transform: scale(0.5); }
+
+        @media (max-width: 600px) {
+          .orbital-wrapper { height: 320px; }
+          .orbital-scaler { transform: scale(0.74); }
+        }
+
+        @media (max-width: 420px) {
+          .orbital-wrapper { height: 280px; }
+          .orbital-scaler { transform: scale(0.62); }
         }
       `}</style>
     </section>
