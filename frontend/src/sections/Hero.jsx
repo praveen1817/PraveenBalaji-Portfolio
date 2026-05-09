@@ -81,11 +81,8 @@ const Hero = () => {
               
               {/* Photo placeholder designed beautifully light */}
               <div className="relative w-full h-full rounded-full overflow-hidden border-[6px] border-white shadow-xl bg-slate-50 flex items-center justify-center">
-                <div className="absolute inset-0 bg-gradient-to-tr from-slate-100 to-white"></div>
-                <div className="text-center p-8 relative z-10">
-                  <div className="text-7xl mb-4 text-slate-300 font-heading">PB</div>
-                </div>
-              </div>
+                <img src="/profile.jpeg" alt="Profile Photo" className="w-full h-full object-cover" />
+                              </div>
               
               {/* Floating aesthetic dot */}
               <motion.div 
